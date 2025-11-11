@@ -1,5 +1,5 @@
 {
-  "name": "@demo-package",
+  "name": "__NPM_NAME__",
   "version": "0.0.1",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -24,3 +24,5 @@
   "description": "",
   "dependencies": {}
 }
+
+
