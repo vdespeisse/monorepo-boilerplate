@@ -41,11 +41,7 @@ A minimal, batteries-included TypeScript monorepo using npm workspaces, Vitest, 
 ├─ tsconfig.base.json      # shared TS config
 ├─ vitest.config.ts        # root test configuration
 └─ packages/
-   └─ demo-package/
-      ├─ package.json
-      ├─ src/
-      │  └─ index.ts
-      └─ tsconfig.json
+   └─ (your-packages-here)
 ```
 
 ### Workspace Scripts (root)
@@ -64,48 +60,32 @@ Each package should:
 - Emit types to `dist` and set `types`, `main` (CJS), `module`/ESM path appropriately
 - Have `build` and optional `dev` scripts
 
-Example (`packages/demo-package/package.json`):
-
-```json
-{
-  "name": "@demo-package",
-  "version": "0.0.1",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "type": "module",
-  "require": "./dist/index.cjs",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
-    }
-  },
-  "files": ["dist"],
-  "scripts": {
-    "build": "tsup-node src/index.ts --format esm,cjs --dts",
-    "dev": "tsx src/index.ts",
-    "test": "vitest run"
-  }
-}
-```
+Templates for `package.json`, `tsconfig.json`, and `src/index.ts` live under `scripts/boilerplate/`.
 
 ### Creating a New Package
 
-1. Scaffold a folder:
-   ```bash
-   mkdir -p packages/my-new-package/src
-   ```
-2. Add a minimal `package.json` (adapt from the example above). Ensure it has a `build` script.
-3. Add `src/index.ts` with your exports.
-4. Optionally add a `tsconfig.json` if you need overrides; otherwise inherit from `tsconfig.base.json`.
-5. Build:
-   ```bash
-   npm run build
-   ```
-6. (Optional) Add tests under `packages/my-new-package/**/*.test.ts` and run:
-   ```bash
-   npm run test
-   ```
+Use the scaffold script, which copies templates from `scripts/boilerplate` and personalizes the `name`:
+
+```bash
+# Unscoped package name
+bash scripts/create-package.sh my-new-package
+
+# Scoped package name (adds leading @ to npm name)
+bash scripts/create-package.sh my-new-package --scoped
+```
+
+This creates:
+
+- `packages/my-new-package/package.json` (ESM + CJS exports, tsup build, tsx dev, vitest run)
+- `packages/my-new-package/tsconfig.json` (extends repo base)
+- `packages/my-new-package/src/index.ts` (starter export)
+
+Next steps:
+
+```bash
+npm run build
+npm run test
+```
 
 ### TypeScript
 

@@ -1,5 +1,5 @@
 export function hello(): string {
-  return "hello";
+  return 'hello'
 }
 
-
+console.log(hello())
