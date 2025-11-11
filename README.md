@@ -108,13 +108,6 @@ npm run test
   ```
 - Ensure your package `package.json` has the correct `name`, `version`, `files`, and `exports` fields.
 
-### FAQ
-
-- Q: Can I use pnpm or yarn?
-  - A: Root config targets npm workspaces. You can migrate, but adjust scripts and lockfiles accordingly.
-- Q: How do I add an app?
-  - A: Create `apps/<name>` with its own `package.json`. It will be picked up by workspaces.
-
 ### License
 
-ISC (update as needed).
+whatever
