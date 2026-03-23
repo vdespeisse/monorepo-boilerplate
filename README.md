@@ -1,14 +1,14 @@
 ## Monorepo Boilerplate
 
-A minimal, batteries-included TypeScript monorepo using npm workspaces, Vitest, and `tsup`. It’s designed to help you quickly add packages/apps and share configuration.
+A minimal, batteries-included TypeScript monorepo using npm workspaces, Vitest, and `tsdown`. It’s designed to help you quickly add packages/apps and share configuration.
 
 ### Features
 
 - **Workspaces**: Managed via npm workspaces (`packages/*`, `apps/*`)
 - **TypeScript**: Shared `tsconfig.base.json`
-- **Build**: `tsup` for ESM + CJS outputs with type declarations
+- **Build**: `tsdown` for ESM output with type declarations
 - **Testing**: Vitest with coverage and watch mode
-- **Node**: ESM-first setup, supports dual exports per package
+- **Node**: ESM-first package setup
 
 ### Getting Started
 
@@ -56,8 +56,8 @@ A minimal, batteries-included TypeScript monorepo using npm workspaces, Vitest, 
 Each package should:
 
 - Be placed in `packages/<name>`
-- Export both ESM and CJS if needed (via `exports` field)
-- Emit types to `dist` and set `types`, `main` (CJS), `module`/ESM path appropriately
+- Export ESM via the `exports` field
+- Emit types to `dist` and set `types` plus the ESM entry path appropriately
 - Have `build` and optional `dev` scripts
 
 Templates for `package.json`, `tsconfig.json`, and `src/index.ts` live under `scripts/boilerplate/`.
@@ -76,7 +76,7 @@ bash scripts/create-package.sh my-new-package --scoped
 
 This creates:
 
-- `packages/my-new-package/package.json` (ESM + CJS exports, tsup build, tsx dev, vitest run)
+- `packages/my-new-package/package.json` (ESM-only exports, tsdown build, tsx dev, vitest run)
 - `packages/my-new-package/tsconfig.json` (extends repo base)
 - `packages/my-new-package/src/index.ts` (starter export)
 

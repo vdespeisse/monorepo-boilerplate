@@ -1,23 +1,22 @@
 {
   "name": "__NPM_NAME__",
   "version": "0.0.1",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
+  "types": "./dist/index.d.mts",
+  "main": "./dist/index.mjs",
   "type": "module",
-  "require": "./dist/index.cjs",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup-node src/index.ts --format esm,cjs --dts",
+    "build": "tsdown src/index.ts --format esm --dts --clean",
     "dev": "tsx src/index.ts",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "author": "",
   "license": "ISC",
